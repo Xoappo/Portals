@@ -2,6 +2,10 @@
 
 A simple portals plugin for **PowerNukkitX**. Create teleport zones without portal blocks: just mark two corners and a destination.
 
+## NOTE
+
+The plugin has not yet been tested so it may have bugs, I will be correcting the bugs when I test it.
+
 ## Features
 
 - Create named portals.

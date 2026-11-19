@@ -3,7 +3,6 @@ package dev.xoapp.portals.commands;
 import java.util.List;
 import java.util.Set;
 import java.util.Arrays;
-import java.util.Collection;
 
 import org.powernukkitx.Player;
 import org.powernukkitx.command.Command;
@@ -32,7 +31,7 @@ public class PortalCommand extends Command
         }
 
         exec(player, commandLabel, Arrays.asList(args));
-        return super.execute(sender, commandLabel, args);
+        return true;
     }
 
     void exec(Player player, String label, List<String> args)
@@ -42,7 +41,7 @@ public class PortalCommand extends Command
             return;
         }
 
-        switch (args.get(0).toString())
+        switch (args.get(0))
         {
             case "help" -> {
                 String[] messages = new String[]{
@@ -55,23 +54,20 @@ public class PortalCommand extends Command
                 for (String message : messages) {
                     player.sendMessage(TextFormat.colorize(message));
                 }
-                return;
             }
 
             case "list" -> {
                 Set<String> keys = PortalFactory.getPortals().keySet();
                 player.sendMessage(TextFormat.colorize("&aAvailable Portals: &e" + String.join(",", keys)));
-
-                return;
             }
 
             case "make" -> {
-                if (args.get(1) == null) {
+                if (args.size() < 2) {
                     player.sendMessage(TextFormat.colorize("&cUse /" + label + " make <name>"));
                     return;
                 }
 
-                String portalName = args.get(1).toString();
+                String portalName = args.get(1);
                 Portal portal = PortalFactory.getPortals().get(portalName);
 
                 if (portal != null) {
@@ -87,16 +83,15 @@ public class PortalCommand extends Command
 
                 MakePortalProcess process = new MakePortalProcess(portalName, session);
                 process.initialize();
-                return;
             }
 
             case "delete" -> {
-                if (args.get(1) == null) {
+                if (args.size() < 2) {
                     player.sendMessage(TextFormat.colorize("&cUse /" + label + " delete <name>"));
                     return;
                 }
 
-                String portalName = args.get(1).toString();
+                String portalName = args.get(1);
                 Portal portal = PortalFactory.getPortals().get(portalName);
 
                 if (portal != null) {
@@ -106,13 +101,9 @@ public class PortalCommand extends Command
 
                 PortalFactory.getPortals().remove(portalName);
                 player.sendMessage(TextFormat.colorize("&aPortal successfully deleted"));
-                return;
             }
 
-            default -> {
-                player.sendMessage(TextFormat.colorize("&cUse /" + label + " help"));
-                return;
-            }
+            default -> player.sendMessage(TextFormat.colorize("&cUse /" + label + " help"));
         }
     }
 }

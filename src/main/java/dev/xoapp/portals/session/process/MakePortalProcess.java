@@ -72,7 +72,12 @@ public class MakePortalProcess
         Player player = event.getPlayer();
         Item item = player.getInventory().getItemInMainHand();
 
-        Tag tag = item.getNbt().getTags().get("portal");
+        CompoundTag nbt = item.getNbt();
+        assert nbt != null;
+
+        Tag tag = nbt.getTags().get("portal");
+
+        assert event.getBlock() != null;
         Position eyePosition = event.getBlock().getPosition();
 
         if (tag == null) {
@@ -88,7 +93,6 @@ public class MakePortalProcess
             case "firstPosition" -> {
                 firstPosition = eyePosition;
                 player.sendMessage(TextFormat.colorize("&aFirst Position saved"));
-                return;
             }
 
             case "secondPosition" -> {
@@ -99,13 +103,11 @@ public class MakePortalProcess
 
                 secondPosition = eyePosition;
                 player.sendMessage(TextFormat.colorize("&aSecond Position saved"));
-                return;
             }
 
             case "destination" -> {
                 destination = eyePosition;
                 player.sendMessage(TextFormat.colorize("&aDestination Position saved"));
-                return;
             }
 
             case "save" -> {
@@ -126,7 +128,6 @@ public class MakePortalProcess
                 session.setProcess(null);
 
                 player.sendMessage(TextFormat.colorize("&aPortal successfully saved"));
-                return;
             }
 
             case "exit" -> {
@@ -134,7 +135,6 @@ public class MakePortalProcess
                 player.sendMessage(TextFormat.colorize("&aPortal process exit"));
 
                 session.setProcess(null);
-                return;
             }
         }
     }

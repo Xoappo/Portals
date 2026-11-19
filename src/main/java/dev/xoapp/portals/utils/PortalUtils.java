@@ -8,9 +8,9 @@ public class PortalUtils
 {
     public static String posToString(Position selectedPosition)
     {
-        Double x = selectedPosition.getX();
-        Double y = selectedPosition.getY();
-        Double z = selectedPosition.getZ();
+        double x = selectedPosition.getX();
+        double y = selectedPosition.getY();
+        double z = selectedPosition.getZ();
 
         String worldName = selectedPosition.getLevelName();
 

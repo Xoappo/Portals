@@ -30,7 +30,7 @@ public class PortalCube
         secondPosition = decodedSecondPosition;
     }
 
-    boolean isInside(Vector3 vector)
+    public boolean isInside(Vector3 vector)
     {
         if (firstPosition != null || secondPosition != null) {
             return false;
@@ -44,14 +44,6 @@ public class PortalCube
         double maxY = Math.max(firstPosition.y, secondPosition.y);
         double maxZ = Math.max(firstPosition.z, secondPosition.z);
 
-        if (vector.x <= minX || vector.x >= maxX) {
-            return false;
-        }
-
-        if (vector.y <= minY || vector.y >= maxY) {
-            return false;
-        }
-
-        return vector.z > minZ && vector.z < maxZ;
+        return vector.x >= minX && vector.x <= maxX && vector.y >= minY && vector.y <= maxY && vector.z >= minZ && vector.z <= maxZ;
     }
 }

@@ -9,8 +9,10 @@ repositories {
     mavenCentral()
 
     maven("https://repo.powernukkitx.org/releases")
-    maven("https://repo.powernukkitx.org/releases")
-    maven("https://repo.powernukkitx.org/snapshots")
+    maven("https://projectlombok.org/edge-releases");
+
+    maven("https://repo.opencollab.dev/maven-releases")
+    maven("https://repo.opencollab.dev/maven-snapshots")
 }
 
 dependencies {
@@ -18,12 +20,16 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    compileOnly("org.projectlombok:lombok:1.18.30")
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
+    compileOnly("org.projectlombok:lombok:edge-SNAPSHOT")
+    annotationProcessor("org.projectlombok:lombok:edge-SNAPSHOT")
 
     implementation("org.powernukkitx:server:3.0.6-SNAPSHOT")
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.release.set(25)
 }

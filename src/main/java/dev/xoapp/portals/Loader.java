@@ -10,6 +10,7 @@ public class Loader extends PluginBase
 {
     @Getter private static Loader instance;
 
+    @Override
     public void onEnable()
     {
         instance = this;
@@ -20,6 +21,7 @@ public class Loader extends PluginBase
         PortalFactory.initialize();
     }
 
+    @Override
     public void onDisable()
     {
         PortalFactory.save();

@@ -7,16 +7,6 @@ import dev.xoapp.portals.utils.PortalUtils;
 
 public record Portal(String name, PortalCube cube, Position destination)
 {
-    public Portal(String name)
-    {
-        this(name, new PortalCube(), null);
-    }
-
-    public Portal(String name, PortalCube portalCube)
-    {
-        this(name, portalCube, null);
-    }
-
     public ConfigSection toSection()
     {
         ConfigSection section = new ConfigSection();

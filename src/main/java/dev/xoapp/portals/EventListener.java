@@ -59,7 +59,7 @@ public class EventListener implements Listener
             return;
         }
 
-        if (event.getFrom().equals(event.getTo())) {
+        if (event.getTo().equals(event.getFrom())) {
             return; // avoid head movement
         }
 
